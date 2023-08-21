@@ -21,6 +21,7 @@ from typing import (
     Mapping,
     NamedTuple,
     Optional,
+    OrderedDict,
     Sequence,
     Set,
     Tuple,
@@ -32,7 +33,7 @@ from typing import (
 import pytest
 from dirty_equals import HasRepr, IsStr
 from pydantic_core import CoreSchema, core_schema
-from typing_extensions import Annotated, Literal, OrderedDict, ParamSpec, TypeVarTuple, Unpack, get_args
+from typing_extensions import Annotated, Literal, ParamSpec, TypeVarTuple, Unpack, get_args
 
 from pydantic import (
     BaseModel,

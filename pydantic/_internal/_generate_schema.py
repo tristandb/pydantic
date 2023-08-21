@@ -22,6 +22,7 @@ from typing import (
     Callable,
     ContextManager,
     Dict,
+    Final,
     ForwardRef,
     Iterable,
     Iterator,
@@ -35,7 +36,7 @@ from typing import (
 from warnings import warn
 
 from pydantic_core import CoreSchema, PydanticUndefined, core_schema
-from typing_extensions import Annotated, Final, Literal, TypeAliasType, TypedDict, get_args, get_origin, is_typeddict
+from typing_extensions import Annotated, Literal, TypeAliasType, TypedDict, get_args, get_origin, is_typeddict
 
 from ..config import ConfigDict, JsonEncoder
 from ..errors import PydanticSchemaGenerationError, PydanticUndefinedAnnotation, PydanticUserError
@@ -734,7 +735,7 @@ class GenerateSchema:
         elif _typing_extra.is_namedtuple(obj):
             return self._namedtuple_schema(obj, None)
         elif _typing_extra.is_new_type(obj):
-            # NewType, can't use isinstance because it fails <3.7
+            # NewType, can't use isinstance because it fails <3.10
             return self.generate_schema(obj.__supertype__)
         elif obj == re.Pattern:
             return self._pattern_schema(obj)
